@@ -1,0 +1,11 @@
+---
+list_of_packages:
+  - vim
+  - net-tools
+  - tree
+  - curl
+  - htop
+  - wget
+  - bash-completion
+  - iftop
+  - pwgen
