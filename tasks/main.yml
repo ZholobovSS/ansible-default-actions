@@ -1,4 +1,10 @@
 ---
+- name: Check directory '/var/lib/apt/lists' exists
+  ansible.builtin.file:
+    path: /var/lib/apt/lists
+    state: directory
+    mode: "0755"
+
 - name: Update apt repo and cache
   ansible.builtin.apt:
     update_cache: true
@@ -8,12 +14,13 @@
 - name: Upgrade all packages
   ansible.builtin.apt:
     upgrade: dist
+    update_cache: true
     force_apt_get: true
 
 - name: Install list of required packages
   ansible.builtin.apt:
     name: "{{ list_of_packages }}"
-    state: latest
+    state: latest # noqa package-latest
 
 - name: Check if a reboot is needed
   ansible.builtin.stat:
